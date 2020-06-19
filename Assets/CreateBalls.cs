@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-public class Main : MonoBehaviour
+public class CreateBalls : MonoBehaviour
 {
 
     public GameObject ballPrefab;
@@ -26,6 +26,12 @@ public class Main : MonoBehaviour
     private List<GameObject> ballList = new List<GameObject>();
     void Update()
     {
+        //Android退出按钮
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         //时间间隔
         countTime += Time.deltaTime;
         if (countTime < 0.35) {
@@ -42,7 +48,6 @@ public class Main : MonoBehaviour
         //加入集合
         ballList.Add(ball);
         //删除过多的小球
-        Debug.Log(ballList.Count);
         while (ballList.Count > 100)
         {
             GameObject.Destroy(ballList[0]);
